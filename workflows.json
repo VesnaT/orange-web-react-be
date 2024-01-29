@@ -1,7 +1,7 @@
 {
   "workflows": [
     {
-      "workflowID": "Foo",
+      "id": "Foo",
       "nodes": [
         {
           "id": 0,
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "workflowID": "Bar",
+      "id": "Bar",
       "nodes": [
         {
           "id": 0,
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "workflowID": "Baz",
+      "id": "Baz",
       "nodes": []
     }
   ]
