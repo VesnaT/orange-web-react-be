@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
 
-from db import save_data, read_data
+from db import read_data, save_workflow
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
@@ -27,7 +27,7 @@ def set_data():
     print(request)
     print(request.get_json(force=True))
     data = request.get_json(force=True)
-    save_data(data)
+    save_workflow(data)
     return data
 
 
@@ -43,7 +43,7 @@ def handle_dot(data: str):
     print("data from the front end!!")
     print(data)
     print("END")
-    save_data(json.loads(data))
+    save_workflow(json.loads(data))
     emit("dot", data, broadcast=True)
 
 
