@@ -20,6 +20,11 @@ def save_workflow(workflow: Dict):
         json.dump(data, f)
 
 
+def read_names() -> Dict:
+    with open("names.json", "r") as f:
+        return json.load(f)
+
+
 if __name__ == "__main__":
     workflows = read_data()
     save_workflow({"id": "Foo",
