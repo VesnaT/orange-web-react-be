@@ -9,7 +9,7 @@ from flask_socketio import SocketIO, emit
 from db import read_data, save_workflow, read_names
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret!'
+app.config["SECRET_KEY"] = "secret!"
 CORS(app, resources={r"/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -43,10 +43,9 @@ def get_name(workflow_id: str) -> Dict:
 
 @app.route("/data", methods=["POST"])
 def set_data():
-    print(request)
-    print(request.get_json(force=True))
     data = request.get_json(force=True)
     save_workflow(data)
+    emit("update", data, namespace="/", broadcast=True)
     return data
 
 
@@ -57,13 +56,9 @@ def connected():
     # emit("connect", {"data": f"id: {request.sid} is connected"})
 
 
-@socketio.on("dot")
-def handle_dot(data: str):
-    print("data from the front end!!")
-    print(data)
-    print("END")
-    save_workflow(json.loads(data))
-    emit("dot", data, broadcast=True)
+@socketio.on("update")
+def handle_update(arg):
+    print("handle_update", arg)
 
 
 @socketio.on("disconnect")
