@@ -4,18 +4,42 @@
       "id": "Foo",
       "nodes": [
         {
-          "id": 0,
-          "x": 0,
-          "y": 20,
+          "connections": [
+            1
+          ],
           "fill": "#3f51b5",
-          "name": "Alice"
+          "id": 0,
+          "name": "Alice",
+          "x": 159,
+          "y": 114
         },
         {
           "id": 1,
-          "x": 200,
-          "y": 120,
+          "x": 413,
+          "y": 234,
           "fill": "#9c27b0",
-          "name": "Bob"
+          "name": "Bob",
+          "connections": [
+            4
+          ]
+        },
+        {
+          "connections": [
+            1
+          ],
+          "fill": "#cddc39",
+          "id": 3,
+          "name": "Carol",
+          "x": 156,
+          "y": 366
+        },
+        {
+          "id": 4,
+          "x": 688,
+          "y": 372,
+          "fill": "#00bcd4",
+          "name": "Peggy",
+          "connections": []
         }
       ]
     },
@@ -23,11 +47,22 @@
       "id": "Bar",
       "nodes": [
         {
-          "id": 0,
-          "x": 580,
-          "y": 179,
+          "connections": [],
           "fill": "#8bc34a",
-          "name": "Carol"
+          "id": 0,
+          "name": "Carol",
+          "x": 580,
+          "y": 179
+        },
+        {
+          "id": 2,
+          "x": 148,
+          "y": 155,
+          "fill": "#e91e63",
+          "name": "Heidi",
+          "connections": [
+            0
+          ]
         }
       ]
     },
