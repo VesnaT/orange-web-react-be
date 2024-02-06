@@ -1,4 +1,3 @@
-import json
 import random
 from typing import Dict
 
@@ -44,27 +43,14 @@ def get_name(workflow_id: str) -> Dict:
 @app.route("/data", methods=["POST"])
 def set_data():
     data = request.get_json(force=True)
-    save_workflow(data)
-    emit("update", data, namespace="/", broadcast=True)
+    try:
+        session_id = data.pop("sessionID")
+        save_workflow(data)
+        emit("updated", {"workflowID": data["id"], "sessionID": session_id},
+             namespace="/", broadcast=True)
+    except Exception as e:
+        pass
     return data
-
-
-@socketio.on("connect")
-def connected():
-    # print(request.sid)
-    print("user connected")
-    # emit("connect", {"data": f"id: {request.sid} is connected"})
-
-
-@socketio.on("update")
-def handle_update(arg):
-    print("handle_update", arg)
-
-
-@socketio.on("disconnect")
-def disconnected():
-    print("user disconnected")
-    emit("disconnect", f"user {request.sid} disconnected", broadcast=True)
 
 
 if __name__ == "__main__":

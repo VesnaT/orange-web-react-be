@@ -3,8 +3,11 @@ import json
 
 
 def read_data() -> Dict:
-    with open("workflows.json", "r") as f:
-        return json.load(f)
+    try:
+        with open("workflows.json", "r") as f:
+            return json.load(f)
+    except json.decoder.JSONDecodeError:
+        return {"workflows": []}
 
 
 def save_workflow(workflow: Dict):
